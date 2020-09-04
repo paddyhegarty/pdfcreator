@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="template3.css">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+        }
+
+        h1 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .floatLeft {
+            float: left;
+        }
+
+        .floatRight {
+            float: right;
+        }
+
+        .logo {}
+
+
+        .clear {
+            clear: both;
+        }
+
+        .invoiceDetails,
+        .billing,
+        .company {
+            text-align: left !important;
+        }
+
+        #products {
+            border-collapse: collapse !important;
+            width: 100% !important;
+        }
+
+        #products td,
+        #products th {
+            text-align: left;
+        }
+
+        #products tr:nth-child(odd) {
+            background-color: #f2f2f2 !important;
+            padding-top: 5px;
+        }
+
+        #products th {
+            padding-top: 6px !important;
+            padding-bottom: 6px !important;
+            text-align: left !important;
+            background-color: #4CAF50 !important;
+            color: white !important;
+        }
+
+        .description {
+            text-align:
+                left;
+            font-weight: bold;
+            padding-bottom: 4px;
+            padding-top: 4px;
+        }
+
+        #pageFooter {
+            text-align: center;
+        }
+    </style>
+    <title>Template 1</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="mainRow">
+            <div class="invoiceDetails floatLeft">
+                <b>Invoice Number:</b> {{invoicenumber}}<br>
+                {{!-- <b>Date:</b> ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`} <br>
+                   <b>Due Date:</b> ${`${newDueDate.getDate()}. ${newDueDate.getMonth() + 1}. ${newDueDate.getFullYear()}.`} <br> --}}
+            </div>
+            <div class="logo floatRight"><img src={{currentLogo}} style="width:100%; max-width:130px;"></div>
+        </div>
+        <div class="clear"></div>
+        <div>
+            <h1>INVOICE</h1>
+            <br />
+            <br />
+            <br />
+        </div>
+
+        <div class="mainRow">
+            <div class="billing floatLeft">
+                {{companyname}}<br>
+                {{billingaddress}}
+            </div>
+            <div class="company floatRight">
+                {{usercompanyname}}<br>
+                {{useraddress1}}<br>
+                {{useraddress2}}<br>
+                {{useremail}}<br>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <hr />
+        <table id="products">
+            <tr>
+                <td width="50%"><strong>Details</strong></td>
+                <td width="10%" style="text-align: right;"><strong>Quantity</strong></td>
+                <td width="20%" style="text-align: center;"><strong>Rate</strong></td>
+                <td width="20%" style="text-align: right; padding-right:15px;"><strong>Amount</strong></td>
+            </tr>
+            <tr>
+                <td>&nbsp</td>
+            </tr>
+            {{#each product}}
+            <tr>
+                <td width="50%">{{productservice}}</td>
+                <td width="10%" style="text-align: right;">{{qty}}</td>
+                <td width="20%" style="text-align: center;">{{rate}}</td>
+                <td width="20%" style="text-align: right; padding-right:15px;">{{amount}}</td>
+            </tr>
+            <tr>
+                <td colspan="4" class="description">{{description}}</td>
+            </tr>
+            {{/each}}
+        </table>
+        <hr />
+        <div class="mainRow">
+            <table class="floatRight" style="margin-right: 20px;">
+                <tr>
+                    <td style="text-align: right;">Subtotal</td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td style="text-align: right;">{{total}}</td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">Vat/Tax</td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td style="text-align: right;">{{tax}}</td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">Total Due</td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td style="text-align: right;">{{totalamount}}</td>
+                </tr>
+            </table>
+            <div class="floatleft">
+                <div class="paymentMethod" style="width: 100%; text-align: left; margin-left: 20px;">
+                    <h1>Payment Methods</h1>
+                    {{paymentmethod}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div style="position: absolute: top: 20px; left: 20px;">
+        {{message}}
+    </div>
+</body>
+
+</html>
